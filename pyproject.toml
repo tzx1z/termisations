@@ -1,0 +1,148 @@
+[build-system]
+# 1.27 - первая версия с license и license-files по PEP 639. Более старая
+# собирает пакет без ошибки, но без License-Expression и License-File в
+# метаданных, и PyPI показывает проект без лицензии.
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "termisations"
+version = "0.1.1"
+description = "Terminal XMPP client with protocol transparency: raw XML stream, XEP details, slash commands"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Evgeny Inkov", email = "me@inkov.dev" }]
+maintainers = [{ name = "Evgeny Inkov", email = "me@inkov.dev" }]
+keywords = ["xmpp", "tui", "textual", "omemo", "jabber"]
+# AGPL-3.0-only выбрана не из предпочтений, а по зависимостям: slixmpp-omemo и
+# oldmemo распространяются под AGPL-3.0-only, а oldmemo - это рабочее
+# пространство имен OMEMO в этом клиенте. Любая другая лицензия потребовала бы
+# оговорки о том, что сборка с группой omemo распространяется иначе.
+license = "AGPL-3.0-only"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Natural Language :: Russian",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Communications :: Chat",
+    "Topic :: Internet :: XMPP",
+]
+
+# Базовая установка держит только TUI: каркас работает на эмулированном потоке
+# строфов и не требует сети.
+dependencies = ["textual>=8.2,<9"]
+
+# Транспорт и криптография вынесены в отдельные группы: slixmpp и python-omemo
+# тянут нативные криптозависимости, сборка которых на свежем интерпретаторе не
+# гарантирована. Каркасу на моке они не нужны, а обязательная зависимость
+# сделала бы установку клиента невоспроизводимой.
+[project.optional-dependencies]
+# aiohttp указан явно, хотя его тянет не наш код. Плагин XEP-0363 в slixmpp
+# импортирует aiohttp на уровне модуля, а сама библиотека объявляет его только
+# в extra "xep-0363". Сессия регистрирует плагины списком и без aiohttp падает
+# на старте целиком, а не теряет одну команду загрузки.
+xmpp = ["slixmpp>=1.17", "aiohttp>=3.9"]
+omemo = ["slixmpp-omemo>=2.2"]
+# Keyring необязателен: на машине без сессии D-Bus он не работает,
+# а пароль там берется из внешней команды или запрашивается при старте.
+keyring = ["keyring>=25"]
+
+# Те же адреса стоят в data/dev.inkov.termisations.metainfo.xml, совпадение
+# проверяет tests/test_metadata.py.
+[project.urls]
+Homepage = "https://inkov.dev"
+Repository = "https://github.com/tzx1z/termisations"
+Issues = "https://github.com/tzx1z/termisations/issues"
+Discussions = "https://github.com/tzx1z/termisations/discussions"
+
+[project.scripts]
+termisations = "termisations.cli:main"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.11",
+    "ruff>=0.6",
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+    "textual-dev>=1.7",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/termisations"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src",
+    "data",
+    "tests",
+    "pyproject.toml",
+    "README.md",
+    "README.ru.md",
+    "LICENSE",
+]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+warn_unreachable = true
+warn_no_return = true
+show_error_codes = true
+# disallow_any_explicit выключен: шина событий хранит обработчики
+# как Callable[[Any], None], иначе обобщенная подписка по типу не типизируется.
+
+[[tool.mypy.overrides]]
+# keyring ставится необязательной группой: без него импорт внутри функции падает
+# ImportError, и это штатный путь, а не ошибка сборки.
+module = ["slixmpp.*", "slixmpp_omemo.*", "keyring"]
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "RUF", "ANN", "PTH"]
+ignore = [
+    "ANN401",  # Any в шине событий обоснован, см. комментарий в mypy-секции
+    "RUF001",  # кириллица в строках дает ложные срабатывания на "похожие символы"
+    "RUF002",  # то же для docstring
+    "RUF003",  # то же для комментариев
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN201", "ANN001"]
+# Строфы slixmpp объявляют name, namespace, interfaces и sub_interfaces полями
+# класса, и таков контракт ElementBase. Обернуть их в ClassVar нельзя: базовый
+# класс объявляет их обычными атрибутами, и mypy тогда ругается на несовпадение.
+"src/termisations/protocol/sasl2/stanza.py" = ["RUF012"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["termisations"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+# Маркер live выделяет тесты, которым нужен поднятый XMPP-сервер. Они
+# пропускаются сами, если сервера нет, но маркер позволяет отобрать их явно.
+markers = ["live: требует поднятого XMPP-сервера, см. tests/test_live_session.py"]
+testpaths = ["tests"]
+addopts = "-q"
+# Раскладка src: пакет виден тестам без установки и без PYTHONPATH снаружи.
+pythonpath = ["src"]
+filterwarnings = [
+    # slixmpp-omemo 2.2.0 обращается к плагинам через xmpp["..."], а slixmpp
+    # начиная с 1.17.0 считает это устаревшим. Это код библиотеки, исправление
+    # на ее стороне. Фильтр снять, когда выйдет исправленная версия.
+    "ignore:Accessing plugins through the XMPP object is deprecated.*:DeprecationWarning:slixmpp_omemo.*",
+]

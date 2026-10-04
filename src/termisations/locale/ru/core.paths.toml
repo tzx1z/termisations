@@ -1,0 +1,7 @@
+# Русский перевод строк termisations/core/paths.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"account address must look like user@server, got: {jid!r}" = "адрес учетной записи должен иметь вид user@server, получено: {jid!r}"
+"address {jid!r} does not fit as a profile directory name" = "адрес {jid!r} не годится в имя каталога профиля"
+"address {jid!r} contains non-printable characters" = "адрес {jid!r} содержит непечатаемые символы"
+"no profile selected: only an account has a data directory" = "профиль не выбран: каталог данных есть только у учетной записи"

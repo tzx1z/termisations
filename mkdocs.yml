@@ -1,0 +1,83 @@
+# Сайт документации: https://docs.inkov.dev/projects/termisations/
+# Проект Read the Docs подключен как subproject основного проекта домена docs.inkov.dev
+# и собирается из ветки main на GitHub. Сборка - .readthedocs.yaml. Локальный просмотр:
+#   pip install -r requirements-docs.txt && mkdocs serve
+#   адрес: http://127.0.0.1:8000/projects/termisations/ (путь берется из site_url)
+
+site_name: termisations
+site_description: "Terminal XMPP client with protocol transparency: raw XML stream, XEP details, slash commands"
+# На Read the Docs адрес берется из окружения сборки, локально - значение по умолчанию.
+# Последняя часть пути - alias subproject в настройках основного проекта.
+site_url: !ENV [READTHEDOCS_CANONICAL_URL, "https://docs.inkov.dev/projects/termisations/"]
+
+repo_url: https://github.com/tzx1z/termisations
+repo_name: tzx1z/termisations
+edit_uri: edit/main/
+
+# Страницы сайта - README.md и README.ru.md, те же, что показывают GitHub и PyPI.
+# Они лежат в корне, поэтому каталог исходников - корень, это разрешает плагин
+# same-dir. В корне же код, тесты и служебные каталоги, так что на сайт попадает
+# только перечисленное явно. Скриншоты README берет с raw.githubusercontent.com.
+# Шаблон применяется и к файлам темы: без !/assets/ сайт собирается без CSS и JS.
+docs_dir: .
+exclude_docs: |
+  /*
+  !/README.md
+  !/README.ru.md
+  !/assets/
+
+# Битые ссылки, якоря и файлы вне навигации - предупреждения,
+# а на Read the Docs (mkdocs.fail_on_warning) - ошибка сборки
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+
+# README.md без index.md становится главной страницей, README.ru.md - /README.ru/
+nav:
+  - English: README.md
+  - Русский: README.ru.md
+
+theme:
+  name: material
+  language: en
+  features:
+    - content.action.edit
+    - content.code.copy
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - same-dir
+  - search:
+      lang: [en, ru]
+
+markdown_extensions:
+  - tables
+  - sane_lists
+  - toc:
+      permalink: true
+      # Якоря как на GitHub: кириллица сохраняется, ссылки
+      # вида #язык-интерфейса из README.ru.md работают
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.highlight
+  - pymdownx.superfences
+  # Ссылки из URL без разметки, как на GitHub
+  - pymdownx.magiclink

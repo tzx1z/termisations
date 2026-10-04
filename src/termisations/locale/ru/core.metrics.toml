@@ -1,0 +1,5 @@
+# Русский перевод строк termisations/core/metrics.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"window size must be at least 1" = "размер окна должен быть не меньше 1"
+"window must be positive" = "окно должно быть положительным"

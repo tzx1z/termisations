@@ -1,0 +1,22 @@
+# Русский перевод строк termisations/ui/xmllog.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"yes, no" = "да, нет"
+"no stanzas match the filter, Esc clears the filter" = "по фильтру нет строф, Esc снимает фильтр"
+"display is off, the buffer keeps filling, /xml both turns display on" = "показ выключен, буфер наполняется, /xml both включает показ"
+"no stanzas" = "строф нет"
+"no matching stanzas in {mode} mode, /xml both shows both directions" = "в режиме {mode} подходящих строф нет, /xml both показывает обе стороны"
+"{name}: no value given" = "{name}: значение не задано"
+"kind:{value} not recognized, allowed: {allowed}" = "kind:{value} не распознан, допустимо: {allowed}"
+"err:{value} not recognized, allowed: {allowed}" = "err:{value} не распознан, допустимо: {allowed}"
+"Stanza up" = "Строфа выше"
+"Stanza down" = "Строфа ниже"
+"Expand stanza" = "Развернуть строфу"
+"Back to the stream" = "Вернуться к потоку"
+"Page up" = "Страница вверх"
+"Page down" = "Страница вниз"
+"panel buffer size must be at least 1" = "размер буфера панели должен быть не меньше 1"
+"log filter cleared" = "фильтр лога снят"
+"log filter: {expression} - {shown} of {total} stanza" = ["фильтр лога: {expression} - {shown} из {total} строф", "фильтр лога: {expression} - {shown} из {total} строф", "фильтр лога: {expression} - {shown} из {total} строф"]
+"  evicted {count}" = "  вытеснено {count}"
+"  /xml filter or pause" = "  /xml filter или pause"

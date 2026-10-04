@@ -1,0 +1,7 @@
+# Русский перевод строк termisations/protocol/omemo_storage.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"OMEMO key {key} cannot be read: {error}" = "ключ OMEMO {key} не читается: {error}"
+"OMEMO key {key} is corrupted: {error}" = "ключ OMEMO {key} испорчен: {error}"
+"OMEMO key {key} was not written: {error}" = "ключ OMEMO {key} не записан: {error}"
+"OMEMO key {key} was not deleted: {error}" = "ключ OMEMO {key} не удален: {error}"

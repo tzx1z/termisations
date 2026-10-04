@@ -1,0 +1,17 @@
+# Русский перевод строк termisations/core/router.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"command {key} is handled by the interface layer" = "команда {key} исполняется слоем интерфейса"
+"not connected, run /connect first" = "нет соединения, сначала /connect"
+"[message retracted]" = "[сообщение отозвано]"
+"stanza is empty" = "строфа пуста"
+"stanza must be an XML element" = "строфа должна быть элементом XML"
+"stanza does not parse: {reason}, line {line}" = "строфа не разбирается: {reason}, строка {line}"
+"stanza must be a single element" = "строфа должна быть одним элементом"
+"expected: {usage}" = "ожидается: {usage}"
+"shutting down" = "завершение работы"
+"--raw and --groups are mutually exclusive, expected: {usage}" = "--raw и --groups исключают друг друга, ожидается: {usage}"
+"invalid JID: {jid}" = "некорректный JID: {jid}"
+"pong from {target}: {rtt:.0f}ms" = "pong от {target}: {rtt:.0f}ms"
+"registry keys without a handler: {keys}" = "ключи реестра без обработчика: {keys}"
+"handlers without a registry command: {keys}" = "обработчики без команды в реестре: {keys}"

@@ -1,0 +1,5 @@
+# Русский перевод строк termisations/core/storage.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"storage is closed" = "хранилище закрыто"
+"the database is newer than the program: schema version {current}, supported {supported}" = "база новее программы: версия схемы {current}, поддерживается {supported}"

@@ -1,0 +1,183 @@
+/*
+ * Стили каркаса termisations.
+ *
+ * Здесь только структура: раскладка, рамки, отступы и фоновые цвета панелей.
+ * Внутреннее оформление каждой панели живет в ее DEFAULT_CSS, а цвета строк
+ * сырого лога и меток расширений задаются программно через rich.text.Text -
+ * иначе подсветку отдельных фрагментов одной строки не сделать.
+ *
+ * Цвета берутся из переменных темы Textual, а не из литералов. Причина простая:
+ * команда /theme должна реально менять вид, а не только рамку.
+ */
+
+Screen {
+    background: $surface;
+    color: $foreground;
+}
+
+#root {
+    height: 100%;
+    background: $surface;
+}
+
+/* Контейнер панелей. Классы -mode-* и -log-* вешает app.py. */
+#body {
+    height: 1fr;
+    width: 100%;
+    layout: horizontal;
+}
+
+/* Положение панели лога по ширине терминала. */
+
+/* от 160 колонок лог справа */
+#body.-log-right {
+    layout: horizontal;
+}
+
+/* от 80 до 159 колонок лог снизу */
+#body.-log-bottom {
+    layout: vertical;
+}
+
+#body.-log-bottom #chat {
+    width: 100%;
+    height: 1fr;
+    /*
+     * Минимум держит беседу живой на низком терминале. Без него лог с жестким
+     * min-height забирал бы весь остаток высоты, и на 10 строках экрана панель
+     * беседы схлопывалась бы в пустую рамку из двух строк.
+     * Пять строк - это две строки шапки, две строки рамки и одна строка ленты.
+     */
+    min-height: 5;
+}
+
+#body.-log-bottom #xmllog {
+    width: 100%;
+    height: 40%;
+    /* Пропорция вместо жесткого минимума: при нехватке высоты сжимается лог,
+       а не панель беседы, ради которой клиент и запускают. */
+    min-height: 4;
+}
+
+/* Три режима раскладки. */
+
+#chat {
+    width: 1fr;
+    height: 1fr;
+    min-width: 24;
+    background: $surface;
+    border: round $primary 40%;
+    border-title-color: $text-muted;
+    border-title-align: left;
+    padding: 0 1;
+}
+
+#xmllog {
+    width: 1fr;
+    height: 1fr;
+    min-width: 28;
+    background: $panel;
+    border: round $accent 40%;
+    border-title-color: $text-muted;
+    border-title-align: left;
+    padding: 0 1;
+}
+
+#body.-mode-focus #xmllog {
+    display: none;
+}
+
+#body.-mode-focus #chat {
+    width: 100%;
+}
+
+#body.-mode-debug #chat {
+    display: none;
+}
+
+#body.-mode-debug #xmllog {
+    width: 100%;
+    height: 1fr;
+}
+
+/*
+ * Меньше 80 колонок: лог скрыт, беседа занимает весь экран.
+ * Блок стоит после правил режимов. Специфичность у селекторов
+ * одинаковая, поэтому выигрывает последний, и узкий терминал не может
+ * остаться с двумя скрытыми панелями в режиме debug.
+ */
+#body.-log-hidden #xmllog {
+    display: none;
+}
+
+#body.-log-hidden #chat {
+    display: block;
+    width: 100%;
+    height: 1fr;
+}
+
+/* Панель в фокусе выделяется рамкой: в split-режиме видно, куда уйдет PgUp. */
+#chat:focus-within {
+    border: round $primary;
+}
+
+#xmllog:focus-within {
+    border: round $accent;
+}
+
+/* Строка ввода и статус-бар. */
+
+#prompt {
+    background: $surface;
+    border: none;
+    padding: 0 1;
+}
+
+#statusbar {
+    background: $panel;
+    color: $text-muted;
+    padding: 0 1;
+}
+
+/* Маркер небезопасного режима: красный фон статус-бара виден боковым зрением. */
+#statusbar.-unsafe {
+    background: $error 25%;
+    color: $text;
+    text-style: bold;
+}
+
+/*
+ * Второй, независимый признак unsafe. Класс на #root ставит только app.py,
+ * поэтому предупреждение не может исчезнуть из-за чужого обновления состояния.
+ * Пока маскирование отключено, рамка панели лога красная.
+ */
+#root.-unsafe #xmllog {
+    border: round $error;
+    border-title-color: $error;
+    border-title-style: bold;
+}
+
+/*
+ * Оформления строк лога, меток расширений и уведомлений здесь нет.
+ * Подсветка идет по фрагментам одной строки (имя элемента, атрибут, значение,
+ * пространство имен), а CSS-класс применяется к виджету целиком. Цвета задаются
+ * объектами rich.text.Text в ui/xmllog.py и ui/chat.py, палитру отдает
+ * xeps.xep_color. Правила-классы для этих фрагментов не применялись бы ни к чему.
+ */
+
+/* Подтверждение выхода. */
+
+QuitConfirmScreen {
+    align: center middle;
+    background: $surface 60%;
+}
+
+QuitConfirmScreen > #quit-dialog {
+    width: 52;
+    height: auto;
+    padding: 1 2;
+    background: $panel;
+    border: round $error;
+    color: $foreground;
+    text-align: center;
+}

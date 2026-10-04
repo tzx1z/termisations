@@ -1,0 +1,12 @@
+# Русский перевод строк termisations/protocol/sasl2/plugin.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"SASL2: feature_mechanisms is not loaded, cannot choose a mechanism" = "SASL2: feature_mechanisms не загружен, выбирать механизм нечем"
+"SASL2: no suitable mechanism among %s" = "SASL2: подходящего механизма нет среди %s"
+"SASL2: exchange aborted by the mechanism" = "SASL2: обмен прерван механизмом"
+"SASL2: success, address %s, inline %s" = "SASL2: успех, адрес %s, inline %s"
+"no" = "нет"
+"SASL2: rejected %s %s" = "SASL2: отказ %s %s"
+"none listed" = "не названы"
+"SASL2: server requires continuation (%s), the adapter does not support it" = "SASL2: сервер требует продолжения (%s), адаптер это не умеет"
+"SASL2: final mechanism step did not verify: %s" = "SASL2: последний шаг механизма не сошелся: %s"

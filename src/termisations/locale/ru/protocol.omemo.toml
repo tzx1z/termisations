@@ -1,0 +1,6 @@
+# Русский перевод строк termisations/protocol/omemo.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"no trust decision made: check /omemo fingerprints and mark devices with /omemo trust <fingerprint>" = "решение о доверии не принято: посмотрите /omemo fingerprints и пометьте устройства через /omemo trust <отпечаток>"
+"OMEMO plugin is built without storage" = "плагин OMEMO собран без хранилища"
+"{hint}. Awaiting decision: {peers}" = "{hint}. Ждут решения: {peers}"

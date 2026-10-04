@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Метаданные AppStream: по ним termisations показывают центры приложений
+  дистрибутивов и Flathub. Лицензия, ссылки, версия, автор и имя команды
+  совпадают с pyproject.toml, это проверяет tests/test_metadata.py.
+
+  Новый релиз добавляется первым в <releases>. <developer_name> устарел с
+  AppStream 1.0 и оставлен для дистрибутивов со старой библиотекой AppStream,
+  которые не знают <developer>.
+
+  Проверка: appstreamcli validate data/dev.inkov.termisations.metainfo.xml
+-->
+<component type="console-application">
+  <id>dev.inkov.termisations</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>AGPL-3.0-only</project_license>
+
+  <name>termisations</name>
+  <summary>XMPP client with a raw protocol view</summary>
+  <summary xml:lang="ru">XMPP-клиент с видом протокола изнутри</summary>
+
+  <developer id="dev.inkov">
+    <name>Evgeny Inkov</name>
+    <name xml:lang="ru">Евгений Иньков</name>
+  </developer>
+  <developer_name>Evgeny Inkov</developer_name>
+
+  <description>
+    <p>
+      termisations is a terminal XMPP client for people who debug the server,
+      not just chat on it. A raw XMPP stream panel sits next to the
+      conversation, every message carries badges for the extensions involved,
+      and all the work is done with slash commands.
+    </p>
+    <ul>
+      <li>Direct TLS or STARTTLS, SCRAM-SHA-256 and SCRAM-SHA-512, SRV resolution</li>
+      <li>Stream management, Carbons, message archive, receipts, corrections and chat states</li>
+      <li>OMEMO end-to-end encryption in the eu.siacs.conversations.axolotl namespace</li>
+      <li>Stanzas exactly as they went over the socket, with secrets redacted by default</li>
+      <li>A summary of every connection stage with its duration</li>
+      <li>Headless sending from scripts and cron</li>
+      <li>Interface in English and Russian, switchable at runtime</li>
+    </ul>
+  </description>
+
+  <url type="homepage">https://inkov.dev</url>
+  <url type="bugtracker">https://github.com/tzx1z/termisations/issues</url>
+  <url type="vcs-browser">https://github.com/tzx1z/termisations</url>
+  <url type="help">https://github.com/tzx1z/termisations/discussions</url>
+
+  <update_contact>me@inkov.dev</update_contact>
+
+  <provides>
+    <binary>termisations</binary>
+  </provides>
+
+  <categories>
+    <category>Network</category>
+    <category>InstantMessaging</category>
+  </categories>
+
+  <keywords>
+    <keyword>XMPP</keyword>
+    <keyword>Jabber</keyword>
+    <keyword>OMEMO</keyword>
+    <keyword>chat</keyword>
+    <keyword>terminal</keyword>
+  </keywords>
+
+  <!-- Клавиатура рекомендована, а не обязательна: отправка без интерфейса
+       работает из скриптов и cron без нее. -->
+  <recommends>
+    <control>keyboard</control>
+  </recommends>
+
+  <!-- Переписка с любыми адресатами без модерации: для OARS это intense. -->
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-chat">intense</content_attribute>
+  </content_rating>
+
+  <releases>
+    <release version="0.1.1" date="2026-10-04"/>
+    <release version="0.1.0" date="2026-09-24"/>
+  </releases>
+</component>

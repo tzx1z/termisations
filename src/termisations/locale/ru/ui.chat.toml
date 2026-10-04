@@ -1,0 +1,16 @@
+# Русский перевод строк termisations/ui/chat.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"<no text>" = "<без текста>"
+"room" = "комната"
+"no open conversations" = "нет открытых бесед"
+"no conversation selected" = "беседа не выбрана"
+"no history" = "истории нет"
+"/chat <jid> - open a conversation with a contact" = "/chat <jid> - открыть беседу с контактом"
+"/join <room> - join a room" = "/join <комната> - войти в комнату"
+"/help - list of commands, /keys - keys" = "/help - список команд, /keys - клавиши"
+"the raw stanza stream goes to the RAW XML panel on the right" = "сырой поток строф идет в панель RAW XML справа"
+"total" = "итого"
+"connection" = "подключение"
+"ms" = "мс"
+"{count} occupant" = ["{count} уч.", "{count} уч.", "{count} уч."]

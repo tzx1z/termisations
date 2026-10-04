@@ -1,0 +1,6 @@
+# Русский перевод строк termisations/core/events.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"subscriber %r failed on event %s" = "подписчик %r завершился с ошибкой на событии %s"
+"command %s dropped: no handler assigned" = "команда %s отброшена: обработчик не назначен"
+"handler failed on command %s" = "обработчик завершился с ошибкой на команде %s"

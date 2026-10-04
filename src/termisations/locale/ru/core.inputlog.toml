@@ -1,0 +1,6 @@
+# Русский перевод строк termisations/core/inputlog.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"input history not written: %s" = "история ввода не записана: %s"
+"input history is closed" = "история ввода закрыта"
+"the input history is newer than the program: schema version {current}, supported {supported}" = "история ввода новее программы: версия схемы {current}, поддерживается {supported}"

@@ -1,0 +1,12 @@
+# Русский перевод строк termisations/core/redact.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"Unsafe mode disables masking of the raw stream. SASL credentials, OMEMO key material and signed links will get into the log. Enable it only on a test account." = "Режим unsafe отключает маскирование сырого потока. В лог попадут учетные данные SASL, материал ключей OMEMO и подписанные ссылки. Включайте его только на тестовом аккаунте."
+"SASL: bodies of auth, response, challenge, initial-response, additional-data and success are replaced with a length mark" = "SASL: тела auth, response, challenge, initial-response, additional-data и success заменяются на отметку о длине"
+"OMEMO: bodies of key and payload are truncated to 16 characters" = "OMEMO: тела key и payload усекаются до 16 символов"
+"PEP bundle: the number of keys is shown instead of their bodies" = "PEP bundle: вместо тел ключей показывается их количество"
+"XEP-0363 and OOB: the signed query string is cut from links in the put, get, url, uri, target attributes" = "XEP-0363 и OOB: из ссылок в атрибутах put, get, url, uri, target срезается query string с подписью"
+"Signed links in message text lose the query string" = "Подписанные ссылки в тексте сообщений теряют query string"
+"MUC: the room password is replaced completely, as are the password, token, signature and similar attributes" = "MUC: пароль комнаты заменяется полностью, как и атрибуты password, token, signature и подобные"
+"Request headers in the slot and in OOB are replaced completely, except known safe ones like Content-Type" = "Заголовки запроса в слоте и в OOB заменяются полностью, кроме заведомо безопасных вроде Content-Type"
+"Rules match the element name regardless of case and prefix, the content is taken together with CDATA and comments" = "Правила работают по имени элемента без учета регистра и префикса, содержимое берется вместе с CDATA и комментариями"

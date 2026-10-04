@@ -1,0 +1,11 @@
+# Русский перевод строк termisations/xeps.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"XEP-0359: the stanza has a stable identifier" = "XEP-0359: строфе присвоен устойчивый идентификатор"
+"XEP-0184: delivery receipt sent or received" = "XEP-0184: квитанция о доставке отправлена или получена"
+"XEP-0184: receipt requested from the peer" = "XEP-0184: квитанция запрошена у собеседника"
+"XEP-0198: stanza acknowledged by the server" = "XEP-0198: строфа подтверждена сервером"
+"typing" = "печатает"
+"stopped typing" = "остановился"
+"left the conversation" = "вышел из беседы"
+"changed avatar" = "сменил аватар"

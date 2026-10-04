@@ -1,0 +1,15 @@
+# Русский перевод строк termisations/protocol/account.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"account address must look like user@server, got: {jid!r}" = "адрес учетной записи должен иметь вид user@server, получено: {jid!r}"
+"port out of range 1-65535: {number}" = "порт вне диапазона 1-65535: {number}"
+"system keyring" = "системный keyring"
+"environment variable {name}" = "переменная {name}"
+"password is not set: specify password_command in the configuration, put it into the system keyring (service {service}, entry {entry}) or set the environment variable {variable}" = "пароль не задан: укажите password_command в конфигурации, положите его в системный keyring (служба {service}, запись {entry}) или задайте переменную окружения {variable}"
+"cannot parse password_command: {error}" = "не разобрать password_command: {error}"
+"password_command is empty" = "password_command пуста"
+"cannot start password_command: {error}" = "не запустить password_command: {error}"
+"password_command did not respond within {timeout:.0f} s" = "password_command не ответила за {timeout:.0f} с"
+"exit code {code}" = "код возврата {code}"
+"password_command failed: {reason}" = "password_command завершилась с ошибкой: {reason}"
+"password_command printed nothing" = "password_command ничего не напечатала"

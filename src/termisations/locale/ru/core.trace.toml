@@ -1,0 +1,7 @@
+# Русский перевод строк termisations/core/trace.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"conversation" = "беседа"
+"not set" = "не задан"
+"not assigned by the server, the message is not in the archive" = "сервер не присвоил, в архиве сообщения нет"
+"state" = "состояние"

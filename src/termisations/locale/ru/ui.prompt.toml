@@ -1,0 +1,22 @@
+# Русский перевод строк termisations/ui/prompt.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"› message or /command" = "› сообщение или /команда"
+"› answer" = "› ответ"
+"search: " = "поиск: "
+"search: no matches" = "поиск: нет совпадений"
+"  no more" = "  дальше нет"
+"Complete" = "Дополнить"
+"History back" = "История назад"
+"History forward" = "История вперед"
+"History search" = "Поиск по истории"
+"Cancel search" = "Отменить поиск"
+"New line" = "Перенос строки"
+"Restore line" = "Вернуть строку"
+"no completions" = "нет вариантов"
+"line limit" = "предел строк"
+"line limit: {limit}" = "предел строк: {limit}"
+"completions: " = "варианты: "
+"  ({count} more)" = "  (еще {count})"
+"lines: {count}  " = "строк: {count}  "
+"unknown command: /{name}" = "неизвестная команда: /{name}"

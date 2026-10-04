@@ -1,0 +1,4 @@
+# Русский перевод строк termisations/protocol/caps.py.
+# Ключ - английская строка из кода, значение - перевод.
+
+"capabilities cache is closed" = "кэш возможностей закрыт"
